@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Team::Edition::VERSION
   gem.authors       = ["Matthew Kocher"]
   gem.email         = ["kocher@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{This is an unsupperted hack to add a team to a list of tracker projects}
+  gem.summary       = %q{It adds people to projects}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
