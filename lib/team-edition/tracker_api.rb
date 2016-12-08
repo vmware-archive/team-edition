@@ -16,9 +16,7 @@ module TeamEdition
       response
     end
 
-    def add_to_project(project_id, name, initials, email, role)
-      abort "role must be owner, member or viewer" unless %w{owner member viewer}.include?(role)
-
+    def post_add_to_project_request(project_id, name, initials, email, role)
       uri = URI.parse("https://www.pivotaltracker.com/services/v3/projects/#{project_id}/memberships")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -37,6 +35,16 @@ module TeamEdition
       </membership>
       XML
       response = http.request(request)
+    end
+
+    def add_to_project(project_id, name, initials, email, role)
+      abort "role must be owner, member or viewer" unless %w{owner member viewer}.include?(role)
+      3.times do
+        response = post_add_to_project_request(project_id, name, initials, email, role)
+        break if response.code == "200"
+        puts "\e[31m Failed with response code #{response.code}! Waiting one minute and trying again. \e[0m "
+        sleep 60
+      end
       raise "Failed: #{response.inspect} #{response.body}" unless response.code == "200"
     end
   end
