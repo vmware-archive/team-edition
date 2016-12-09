@@ -39,6 +39,7 @@ module TeamEdition
 
     def add_to_project(project_id, name, initials, email, role)
       abort "role must be owner, member or viewer" unless %w{owner member viewer}.include?(role)
+      response = nil
       3.times do
         response = post_add_to_project_request(project_id, name, initials, email, role)
         break if response.code == "200"
