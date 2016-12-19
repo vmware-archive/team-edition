@@ -16,12 +16,14 @@ module TeamEdition
 
     def run!
       projects.each do |project|
+        puts "Working on project #{project["name"]}..."
         project_members = @tracker_api.members(project["id"])
 
         team.each do |member|
           unless project_members.include?(member["email"])
+            print "Adding #{member["name"]}..."
             @tracker_api.add_to_project(project["id"], member["name"], member["initials"], member["email"], member["role"])
-            puts "Added #{member["name"]} to #{project["name"]}"
+            puts " done."
           end
         end
       end
