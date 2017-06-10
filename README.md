@@ -41,10 +41,11 @@ xcode-select --install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew install chruby ruby-install
 ruby-install 2.4.1
-chruby 2.4.1
+echo source /usr/local/opt/chruby/share/chruby/chruby.sh >> ~/.bash_profile
+echo source /usr/local/opt/chruby/share/chruby/auto.sh >> ~/.bash_profile
+echo chruby 2.4.1 >> ~/.bash_profile
+source ~/.bash_profile
 ```
-
-If you do this, you should run `chruby 2.4.1` beforehand each time you want to either run Team Edition or install the gems below.
 
 
 ### Ruby gems
