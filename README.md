@@ -28,34 +28,18 @@ and projects.yml looks like:
 
 ## Setup on a fresh workstation
 
-Are you on a new Mac? Some setup is useful - we can install a newer Ruby, and we need to install some gems. Here's how!
+Are you on a new Mac? Some setup is useful - a newer Ruby, [Homebrew,](https://brew.sh/) [chruby,](https://github.com/postmodern/chruby) and some Ruby gems. Here's how!
 
-
-### Newer Ruby
-*This part is optional.*
-
-Let's install [Homebrew,](https://brew.sh/) [chruby,](https://github.com/postmodern/chruby) and Ruby 2.4.1. Run these commands at the terminal:
+In the terminal, enter the Team Edition directory, and run this command:
 
 ```
 xcode-select --install
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-brew install chruby ruby-install
-ruby-install 2.4.1
-echo source /usr/local/opt/chruby/share/chruby/chruby.sh >> ~/.bash_profile
-echo source /usr/local/opt/chruby/share/chruby/auto.sh >> ~/.bash_profile
-echo chruby 2.4.1 >> ~/.bash_profile
-source ~/.bash_profile
 ```
 
-
-### Ruby gems
-In the terminal, enter the Team Edition directory, and run these commands at the terminal:
+This brings up a dialog window for an installer for the command line developer tools. Run the installer, then run this command:
 
 ```
-gem install bundler
-bundle
+./workstation-setup.sh
 ```
 
-
-### Success!
-After the gems are installed, `team-edition` should be good to go.
+This should install everything else you need:  Then `team-edition` should be good to go.
