@@ -41,7 +41,6 @@ which -s ruby-install || \
   brew install ruby-install || \
   echo_error "Error installing ruby-install!"
 
-
 echo_green "Checking for ruby 2.4.1..."
 [[ -d $HOME/.rubies/ruby-2.4.1 ]] || \
   ruby-install ruby-2.4.1 || \
@@ -50,7 +49,12 @@ grep --quiet "chruby 2.4.1" ~/.bash_profile || \
   echo "chruby 2.4.1" >> ~/.bash_profile
 
 echo_green "Updating current environment..."
-source ~/.bash_profile
+set +u
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+export PROMPT_COMMAND=""
+set -u
+chruby 2.4.1
 
 # install bundler and gems
 echo_green "Checking for ruby gems..."
