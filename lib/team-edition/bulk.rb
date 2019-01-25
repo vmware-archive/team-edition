@@ -20,6 +20,7 @@ module TeamEdition
         project_members = @tracker_api.members(project["id"])
 
         team.each do |member|
+          puts "skipping #{member["email"]}" if  project_members.include?(member["email"])
           unless project_members.include?(member["email"])
             print "Adding #{member["name"]}..."
             @tracker_api.add_to_project(project["id"], member["name"], member["initials"], member["email"], member["role"])
